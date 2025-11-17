@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <title>EscortshubUganda - Verified Professional & Escorts</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700">ES</div>
+      <div>
+        <h1>BUNAEscortshub Uganda</h1>
+        <div class="small">Verified Professional Escorts</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center">
+      <button class="btn ghost" onclick="openRegistration()">💰 Register Now</button>
+      <button class="btn primary" onclick="window.location.href='login.html'">🔐 Escort Login</button>
+    </div>
+  </header>
+
+  <!-- ADVERTISEMENT BANNER SECTION -->
+  <div class="banner-section">
+    <div class="banner-container">
+      <div id="bannersGrid" class="banners-grid"></div>
+    </div>
+  </div>
+
+  <!-- QUICK-SCROLL LOCATIONS (below header) -->
+  <div class="quick-locations" id="quickLocations">
+    <button onclick="filterByCity('Kampala', event)">Kampala</button>
+    <button onclick="filterByCity('Entebbe', event)">Entebbe</button>
+    <button onclick="filterByCity('Jinja', event)">Jinja</button>
+    <button onclick="filterByCity('Najjera', event)">Najjera</button>
+    <button onclick="filterByCity('Kira', event)">Kira</button>
+    <button onclick="filterByCity('Mukono', event)">Mukono</button>
+    <button onclick="filterByCity('Ntinda', event)">Ntinda</button>
+    <button onclick="filterByCity('Mbarara', event)">Mbarara</button>
+    <button onclick="filterByCity('Gulu', event)">Gulu</button>
+    <button onclick="filterByCity('Arua', event)">Arua</button>
+  </div>
+
+  <!-- MAIN LANDING -->
+  <div class="container">
+    <div class="hero-card">
+      <input id="searchInput" placeholder="🔍 Search by name..." oninput="applyFilters()" />
+      <select id="locationSelect" onchange="applyFilters()">
+        <option value="">📍 All Locations</option>
+        <option>Kampala</option>
+        <option>Jinja</option>
+        <option>Entebbe</option>
+        <option>Najjera</option>
+        <option>Kira</option>
+        <option>Mukono</option>
+        <option>Mbarara</option>
+        <option>Gulu</option>
+        <option>Arua</option>
+      </select>
+      <select id="categorySelect" onchange="applyFilters()">
+        <option value="">🎭 All Categories</option>
+        <option>Out calls</option>
+        <option>In calls</option>
+        <option>Massage</option>
+        <option>Fullnight</option>
+        <option>Sex</option>
+      </select>
+      <div style="margin-left:auto;color:var(--muted)" id="resultCount">0 verified escorts</div>
+    </div>
+
+    <div id="loadingIndicator" class="small" style="padding:18px;text-align:center">Loading Escorts...</div>
+
+    <div id="creatorsGrid" class="creators-grid" style="display:none"></div>
+
+    <div id="emptyState" style="display:none;text-align:center;padding:40px">
+      <div style="font-size:48px">👤</div>
+      <h2>No Escorts found</h2>
+      <p class="small">Try adjusting filters or be the first to register!</p>
+      <button class="btn primary" style="margin-top:14px" onclick="openRegistration()">Register Now</button>
+    </div>
+  </div>
+
+  <!-- FULL PAGE PROFILE VIEW -->
+  <div id="profilePage" class="profile-page">
+    <div class="profile-header">
+      <div>
+        <h2 id="profileName">Creator</h2>
+        <div class="small" id="profileSmall">✅ Verified</div>
+      </div>
+      <div>
+        <button class="btn ghost" onclick="closeProfile()">Close</button>
+      </div>
+    </div>
+    <div class="profile-content">
+      <div class="profile-main">
+        <div>
+          <div id="profileImageContainer" class="profile-image-container">
+            <img id="profileImageLarge" src="" alt="">
+          </div>
+          <div class="profile-actions">
+            <button class="btn primary" onclick="callCreator()">📞 Call</button>
+            <button class="btn" style="background:var(--success);color:white" onclick="whatsappCreator()">💬 WhatsApp</button>
+          </div>
+        </div>
+
+        <div class="profile-details">
+          <h3>Details</h3>
+          <p><strong>Category:</strong> <span id="profileCategory"></span></p>
+          <p><strong>Location:</strong> <span id="profileLocation"></span></p>
+          <p><strong>Phone:</strong> <span id="profilePhone"></span></p>
+          <p><strong>WhatsApp:</strong> <span id="profileWhatsapp"></span></p>
+
+          <h4 style="margin-top:12px">About</h4>
+          <p id="profileBio"></p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:16px">Photos</h3>
+      <div id="photosGrid" class="media-grid" style="margin-top:8px"></div>
+
+      <h3 style="margin-top:16px">Videos</h3>
+      <div id="videosGrid" class="media-grid" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <!-- ALERT / INPUT BOX -->
+  <div id="alertBox" role="dialog" aria-hidden="true">
+    <div class="content">
+      <h3 id="alertTitle">Notice</h3>
+      <p id="alertMsg"></p>
+    </div>
+    <div class="btn-row">
+      <button class="btn ghost" onclick="closeAlert()">Close</button>
+      <button class="btn primary" onclick="closeAlert()">OK</button>
+    </div>
+  </div>
+
+  <div id="inputBox" role="dialog" aria-hidden="true">
+    <div class="content">
+      <h3 id="inputTitle">Enter value</h3>
+      <p id="inputDesc" class="small" style="margin-top:6px"></p>
+      <input id="inputField" type="text" />
+    </div>
+    <div class="btn-row">
+      <button class="btn ghost" onclick="rejectInput()">Cancel</button>
+      <button class="btn primary" onclick="resolveInput()">Submit</button>
+    </div>
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div id="loadingOverlay">
+    <div class="loader">
+      <div class="spinner"></div>
+      <div id="loadingText">Working — please wait...</div>
+    </div>
+  </div>
+
+  <!-- FIREBASE & AXIOS -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <script src="landing.js"></script>
+</body>
+</html>
